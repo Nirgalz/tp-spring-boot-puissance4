@@ -14,7 +14,8 @@
     {{#game.getGameTable}}
     <tr>
         {{#.}}
-        <td>{{.}}</td>
+
+        <td><a href="/game/drop/{{-index}}"> {{.}} </a></td>
         {{/.}}
     </tr>
     {{/game.getGameTable}}
