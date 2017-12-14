@@ -11,13 +11,13 @@
 
 
 <table>
-    {{#gameTable}}
-<tr>
-{{#.}}
-    <td>{{.}}</td>
-{{/.}}
-</tr>
-    {{/gameTable}}
+    {{#game.getGameTable}}
+    <tr>
+        {{#.}}
+        <td>{{.}}</td>
+        {{/.}}
+    </tr>
+    {{/game.getGameTable}}
 </table>
 
 </body>
