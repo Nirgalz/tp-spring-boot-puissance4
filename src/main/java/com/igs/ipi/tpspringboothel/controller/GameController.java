@@ -19,7 +19,7 @@ public class GameController{
         ModelAndView modelAndView = new ModelAndView("game");
         modelAndView
                 .addObject("game", gameService.newGame())
-                .addObject("body", "caca");
+                .addObject("gameTable", gameService.newGame().getGameTable());
 
         return modelAndView;
     }

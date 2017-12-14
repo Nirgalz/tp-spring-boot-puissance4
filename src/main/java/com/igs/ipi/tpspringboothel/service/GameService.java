@@ -3,6 +3,8 @@ package com.igs.ipi.tpspringboothel.service;
 import com.igs.ipi.tpspringboothel.model.GameModel;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+
 @Service
 public class GameService {
 
@@ -10,6 +12,16 @@ public class GameService {
         GameModel game = new GameModel();
         game.setNom1("Alfred");
         game.setNom2("René");
+        Integer[][] gameTab = new Integer[6][7];
+
+        for (int i = 0 ; i < 6 ; i++){
+            for (int j = 0 ; j < 7 ; j++){
+                gameTab[i][j] = 0;
+            }
+        }
+
+
+        game.setGameTable(gameTab);
 
         return game;
     }

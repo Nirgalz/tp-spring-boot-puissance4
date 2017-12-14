@@ -1,8 +1,19 @@
 package com.igs.ipi.tpspringboothel.model;
 
+import java.lang.reflect.Array;
+
 public class GameModel {
     private String nom1;
     private String nom2;
+    private Integer[][] gameTable = new Integer[6][7];
+
+    public Integer[][] getGameTable() {
+        return gameTable;
+    }
+
+    public void setGameTable(Integer[][] gameTable) {
+        this.gameTable = gameTable;
+    }
 
     public String getNom1() {
         return nom1;

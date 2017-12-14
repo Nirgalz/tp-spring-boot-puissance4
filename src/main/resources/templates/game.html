@@ -9,7 +9,16 @@
 {{game.getNom1}}
 {{game.getNom2}}
 
-{{body}}
+
+<table>
+    {{#gameTable}}
+<tr>
+{{#.}}
+    <td>{{.}}</td>
+{{/.}}
+</tr>
+    {{/gameTable}}
+</table>
 
 </body>
 </html>
