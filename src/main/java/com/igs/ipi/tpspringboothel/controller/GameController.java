@@ -87,78 +87,85 @@ public class GameController {
             game.setPlayerTurn(2);
         } else game.setPlayerTurn(1);
 
-
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                if (gameTable[i][j] == 1) {
-                    moves[0] = 1;
-                    moves[1]++;
-                } else if (gameTable[i][j] == 2) {
-                    moves[0] = 2;
-                    moves[1]++;
+        //diagonals
+        for (int x = 3; x < 6; x++) {
+            for (int y = 3; y < 7; y++) {
+                if (gameTable[x][y] != 0) {
+                    if (gameTable[x - 1][y - 1] == gameTable[x][y]
+                            && gameTable[x - 2][y - 2] == gameTable[x][y]
+                            && gameTable[x - 3][y - 3] == gameTable[x][y]) {
+                        game.setWinner(gameTable[x][y]);
+                    }
                 }
-                if (moves[1] == 4) {
-                    break;
-                } else if (j == 6) {
-                    moves[0] = 0;
-                    moves[1] = 0;
+            }
+        }
+        for (int x = 3; x < 6; x++) {
+            for (int y = 0; y < 4; y++) {
+                if (gameTable[x][y] != 0) {
+                    if (gameTable[x - 1][y + 1] == gameTable[x][y]
+                            && gameTable[x - 2][y + 2] == gameTable[x][y]
+                            && gameTable[x - 3][y + 3] == gameTable[x][y]) {
+                        game.setWinner(gameTable[x][y]);
+                    }
                 }
             }
         }
 
-
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 6; j++) {
-                if (gameTable[j][i] == 1) {
-                    moves[0] = 1;
-                    moves[1]++;
-                } else if (gameTable[j][i] == 2) {
-                    moves[0] = 2;
-                    moves[1]++;
-                }
-                if (moves[1] == 4) {
-                    break;
-                } else if (i == 5) {
-                    moves[0] = 0;
-                    moves[1] = 0;
+        //horizontal
+        for (int x = 3; x < 6; x++) {
+            for (int y = 0; y < 7; y++) {
+                if (gameTable[x][y] != 0) {
+                    if (gameTable[x - 1][y] == gameTable[x][y]
+                            && gameTable[x - 2][y] == gameTable[x][y]
+                            && gameTable[x - 3][y] == gameTable[x][y]) {
+                        game.setWinner(gameTable[x][y]);
+                    }
                 }
             }
         }
-
-        for (int i = 3; i < 6; i++) {
-            for (int j = 3; j < 7; j++) {
-                if (gameTable[i][j] != 0){
-                    if (gameTable[i][j] == 1) {
-                        if (gameTable[i-1][j-1] == gameTable[i][j]
-                                && gameTable[i-2][j-2] == gameTable[i][j]
-                                && gameTable[i-3][j-3] == gameTable[i][j])
-                        {
-                            game.setWinner(1);
-                        }
-
-                    } else if (gameTable[i][j] == 2) {
-                        if (gameTable[i-1][j-1] == gameTable[i][j]
-                                && gameTable[i-2][j-2] == gameTable[i][j]
-                                && gameTable[i-3][j-3] == gameTable[i][j])
-                        {
-                            game.setWinner(2);
-                        }
+        //vertical
+        for (int x = 0; x < 6; x++) {
+            for (int y = 3; y < 7; y++) {
+                if (gameTable[x][y] != 0) {
+                    if (gameTable[x][y - 1] == gameTable[x][y]
+                            && gameTable[x][y - 2] == gameTable[x][y]
+                            && gameTable[x][y - 3] == gameTable[x][y]) {
+                        game.setWinner(gameTable[x][y]);
                     }
                 }
             }
         }
 
 
-
-        if (moves[1] == 4) {
-            game.setWinner(moves[0]);
-        }
-
-
         game.setGameTable(gameTable);
         partie.setGm(game);
 
-        return "redirect:/game";
+        if (game.getWinner() != 0){
+            return "redirect:/game/won";
+        }
+        else return "redirect:/game";
+
+    }
+
+    @GetMapping("/game/won")
+    public ModelAndView gameWon() {
+        String winner = new String();
+        GameModel game = partie.getGm();
+
+        if (game.getWinner() ==1) {
+            winner = game.getNom1();
+        }
+        else if (game.getWinner() ==2) {
+            winner = game.getNom2();
+        }
+
+
+        ModelAndView modelAndView = new ModelAndView("won");
+        modelAndView
+                .addObject("winner", winner)
+                .addObject("game", game);
+
+        return modelAndView;
     }
 
 }
