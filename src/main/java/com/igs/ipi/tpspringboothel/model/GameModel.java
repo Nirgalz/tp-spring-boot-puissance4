@@ -6,6 +6,16 @@ public class GameModel {
     private String nom1;
     private String nom2;
 
+    public int getWinner() {
+        return winner;
+    }
+
+    public void setWinner(int winner) {
+        this.winner = winner;
+    }
+
+    private int winner;
+
     public int getPlayerTurn() {
         return playerTurn;
     }
@@ -17,13 +27,13 @@ public class GameModel {
     private int playerTurn;
 
 
-    private Integer[][] gameTable = new Integer[6][7];
+    private int[][] gameTable = new int[6][7];
 
-    public Integer[][] getGameTable() {
+    public int[][] getGameTable() {
         return gameTable;
     }
 
-    public void setGameTable(Integer[][] gameTable) {
+    public void setGameTable(int[][] gameTable) {
         this.gameTable = gameTable;
     }
 

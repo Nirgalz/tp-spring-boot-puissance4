@@ -13,7 +13,7 @@ public class GameService {
         game.setNom1("Alfred");
         game.setNom2("René");
         game.setPlayerTurn(1);
-        Integer[][] gameTab = new Integer[6][7];
+        int[][] gameTab = new int[6][7];
 
         for (int i = 0 ; i < 6 ; i++){
             for (int j = 0 ; j < 7 ; j++){

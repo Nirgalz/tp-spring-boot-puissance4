@@ -5,12 +5,13 @@
     <title>puissance 4</title>
 </head>
 <body>
-
+<a href="/game/new">New Game</a>
+<br>
 {{game.getNom1}} VS
 {{game.getNom2}}
 <br>
 {{showedName}} 's turn
-
+{{game.getWinner}}
 <table>
     {{#game.getGameTable}}
     <tr>
