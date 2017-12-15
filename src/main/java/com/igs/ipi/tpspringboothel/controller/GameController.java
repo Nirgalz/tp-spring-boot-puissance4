@@ -59,14 +59,13 @@ public class GameController{
         GameModel game = partie.getGm();
         Integer[][] gameTable = game.getGameTable();
         for (int i = 0 ; i< 6 ; i++){
-            if (gameTable[5][idz] == 0){
-                gameTable[5][idz] = 1;
-            }else
             if (gameTable[i][idz] == 1) {
                 gameTable[i - 1 ][idz] = 1;
             }
         }
-
+        if (gameTable[5][idz] == 0){
+            gameTable[5][idz] = 1;
+        }
 
         game.setGameTable(gameTable);
         partie.setGm(game);
