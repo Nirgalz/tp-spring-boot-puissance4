@@ -125,42 +125,30 @@ public class GameController {
             }
         }
 
+        for (int i = 3; i < 6; i++) {
+            for (int j = 3; j < 7; j++) {
+                if (gameTable[i][j] != 0){
+                    if (gameTable[i][j] == 1) {
+                        if (gameTable[i-1][j-1] == gameTable[i][j]
+                                && gameTable[i-2][j-2] == gameTable[i][j]
+                                && gameTable[i-3][j-3] == gameTable[i][j])
+                        {
+                            game.setWinner(1);
+                        }
 
-//        for (int i = 6; i > 2; i--) {
-//            for (int j = 3; j < 7; j++) {
-//                if (gameTable[i][j] == 1) {
-//                    moves[0] = 1;
-//                    moves[1]++;
-//                } else if (gameTable[i][j] == 2) {
-//                    moves[0] = 2;
-//                    moves[1]++;
-//                }
-//                if (moves[1] == 4) {
-//                    break;
-//                } else if (j == 6) {
-//                    moves[0] = 0;
-//                    moves[1] = 0;
-//                }
-//            }
-//        }
-//
-//        for (int i = 3; i < 6; i++) {
-//            for (int j = 7; j > 2; j--) {
-//                if (gameTable[i][j] == 1) {
-//                    moves[0] = 1;
-//                    moves[1]++;
-//                } else if (gameTable[i][j] == 2) {
-//                    moves[0] = 2;
-//                    moves[1]++;
-//                }
-//                if (moves[1] == 4) {
-//                    break;
-//                } else if (j == 6) {
-//                    moves[0] = 0;
-//                    moves[1] = 0;
-//                }
-//            }
-//        }
+                    } else if (gameTable[i][j] == 2) {
+                        if (gameTable[i-1][j-1] == gameTable[i][j]
+                                && gameTable[i-2][j-2] == gameTable[i][j]
+                                && gameTable[i-3][j-3] == gameTable[i][j])
+                        {
+                            game.setWinner(2);
+                        }
+                    }
+                }
+            }
+        }
+
+
 
         if (moves[1] == 4) {
             game.setWinner(moves[0]);
