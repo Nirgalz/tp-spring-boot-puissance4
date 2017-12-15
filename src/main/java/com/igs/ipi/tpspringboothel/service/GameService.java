@@ -12,6 +12,7 @@ public class GameService {
         GameModel game = new GameModel();
         game.setNom1("Alfred");
         game.setNom2("René");
+        game.setPlayerTurn(1);
         Integer[][] gameTab = new Integer[6][7];
 
         for (int i = 0 ; i < 6 ; i++){

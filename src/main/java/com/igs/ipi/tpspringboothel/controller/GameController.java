@@ -29,10 +29,11 @@ public class GameController{
         GameModel game = gameService.newGame();
 
         partie.setGm(game);
-
+        String showedName = game.getNom1();
         ModelAndView modelAndView = new ModelAndView("game");
         modelAndView
-                .addObject("game", game);
+                .addObject("game", game)
+                .addObject("showedName", showedName);
 
         return modelAndView;
     }
@@ -40,13 +41,19 @@ public class GameController{
     @GetMapping("/game")
     public ModelAndView game(){
 
+        String showedName;
 
         GameModel game = partie.getGm();
+
+        if (game.getPlayerTurn() == 1 ){
+            showedName = game.getNom1();
+        } else showedName = game.getNom2();
+
 
         ModelAndView modelAndView = new ModelAndView("game");
         modelAndView
                 .addObject("game", game)
-                .addObject("gameTable", game.getGameTable());
+                .addObject("showedName", showedName);
         return modelAndView;
     }
 
@@ -57,15 +64,23 @@ public class GameController{
         int idz = id.intValue() - 1;
 
         GameModel game = partie.getGm();
+
+        int playerId = game.getPlayerTurn();
+
         Integer[][] gameTable = game.getGameTable();
         for (int i = 0 ; i< 6 ; i++){
-            if (gameTable[i][idz] == 1) {
-                gameTable[i - 1 ][idz] = 1;
+            if (gameTable[i][idz] == 1 || gameTable[i][idz] == 2) {
+                gameTable[i - 1 ][idz] =  playerId;
+                break;
             }
         }
         if (gameTable[5][idz] == 0){
-            gameTable[5][idz] = 1;
+            gameTable[5][idz] =  playerId;
         }
+
+        if (game.getPlayerTurn() == 1 ){
+            game.setPlayerTurn(2);
+        } else game.setPlayerTurn(1);
 
         game.setGameTable(gameTable);
         partie.setGm(game);

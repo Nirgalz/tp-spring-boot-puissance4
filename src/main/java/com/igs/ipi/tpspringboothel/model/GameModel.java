@@ -5,6 +5,18 @@ import java.lang.reflect.Array;
 public class GameModel {
     private String nom1;
     private String nom2;
+
+    public int getPlayerTurn() {
+        return playerTurn;
+    }
+
+    public void setPlayerTurn(int playerTurn) {
+        this.playerTurn = playerTurn;
+    }
+
+    private int playerTurn;
+
+
     private Integer[][] gameTable = new Integer[6][7];
 
     public Integer[][] getGameTable() {
